@@ -4,6 +4,7 @@ from givealittlelove import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'givealittlelove.gall.views.site.show', {'template_name':'home.html'}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
 
