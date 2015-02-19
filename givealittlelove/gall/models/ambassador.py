@@ -27,4 +27,5 @@ class Ambassador(BaseModel):
         json['name'] = self.name
         json['email'] = self.email
         json['code'] = self.code
+        return json
 

@@ -10,6 +10,7 @@ def create_ambassador(name, email):
     ambassador.name = name
     ambassador.email = email
     ambassador.code = __create_code()
+    logging.info('code: ' + str(ambassador.code))
     ambassador.save()
     return ambassador
 
