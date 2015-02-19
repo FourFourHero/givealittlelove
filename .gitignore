@@ -1,2 +1,7 @@
 venv
 *.pyc
+*.DS_Store
+*.db
+staticfiles
+static
+settings_local.py
