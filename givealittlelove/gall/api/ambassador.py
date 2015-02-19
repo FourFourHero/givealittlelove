@@ -26,6 +26,14 @@ def get_ambassador(ambassador_id):
         pass
     return ambassador
 
+def get_ambassador_by_code(code):
+    ambassador = None
+    try:
+        ambassador = Ambassador.objects.get(code=code)
+    except:
+        pass
+    return ambassador
+
 def __create_code():
     random = str(uuid.uuid4())
     random = random.upper()

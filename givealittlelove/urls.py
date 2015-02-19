@@ -10,6 +10,9 @@ urlpatterns = patterns('',
     # API
     url(r'^api/sandbox/ambassador/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'ambassador_create.html'}),
     url(r'^api/ambassador/create', 'givealittlelove.gall.views.ambassador.create'),
+    url(r'^api/sandbox/activation/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'activation_create.html'}),
+    url(r'^api/activation/create', 'givealittlelove.gall.views.activation.create'),
+
 )
 
 

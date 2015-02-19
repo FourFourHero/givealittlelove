@@ -1,4 +1,5 @@
 from ambassador import Ambassador
+from activation import Activation
 
 def model_encode(obj):
     enc = None
