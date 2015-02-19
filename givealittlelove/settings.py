@@ -137,6 +137,13 @@ STATICFILES_FINDERS = (
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+#
+# MAILGUN
+#
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = 'key-6891425a68a0983ebdb0578003a05f74'
+MAILGUN_SERVER_NAME = 'app19686c2dc77649e48e3a1181ad726870.mailgun.org'
+
 ###
 ### Local Settings
 ###

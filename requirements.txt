@@ -1,8 +1,10 @@
 Django==1.7.4
 dj-database-url==0.3.0
 dj-static==0.0.6
+django-mailgun==0.2.2
 django-toolbelt==0.0.1
 gunicorn==19.2.1
 psycopg2==2.6
+requests==2.5.1
 static3==0.5.1
 wsgiref==0.1.2

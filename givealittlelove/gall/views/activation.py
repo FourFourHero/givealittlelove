@@ -2,10 +2,12 @@ import logging
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.core.mail import send_mail
 
 from givealittlelove.gall.views.response import *
 import givealittlelove.gall.api.ambassador as ambassador_api
 import givealittlelove.gall.api.activation as activation_api
+import givealittlelove.gall.api.coupon as coupon_api
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +45,11 @@ def create(request):
 
     activation = activation_api.create_activation(name, email, code)
 
+
+    activations = activation_api.get_activations_by_code(code)
+    if len(activations) == 5:
+        self._send_coupons(activations)
+
     # return response
     response_dict = success_dict()
     response_dict['ambassador'] = ambassador
@@ -74,3 +81,29 @@ def get_by_code(request):
     response_dict['ambassador'] = ambassador
     response_dict['activations'] = activations
     return render_json(request, response_dict)
+
+@require_POST
+@csrf_exempt
+def test_mail(request):
+    try:
+        send_mail('GALL Test Mail', 'Here is the message.', 'aschulak@ag.com',
+            ['aschulak@gmail.com'], fail_silently=False)
+    except:
+        logging.exception('mail tets failed')
+
+    response_dict = success_dict()
+    return render_json(request, response_dict)
+
+###
+### PRIVATE
+###
+
+def _send_coupons(activations):
+    coupons = coupon_api.get_unsent_coupons(amount=len(activations))
+    for activation in activations:
+        coupon.activation_id = activation.id
+        coupon.sent = True
+        coupon_api.update_coupon(coupon)
+
+        #send_mail('Subject here', 'Here is the message.', 'from@example.com',
+        #    ['to@example.com'], fail_silently=False)
