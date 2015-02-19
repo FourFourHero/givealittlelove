@@ -32,7 +32,7 @@ def get_coupon_by_code(code):
     return coupon
 
 def get_unsent_coupons(amount=None):
-    coupons = Coupon.objects.filter(sent=False)
+    coupons = Coupon.objects.filter(sent=False).order_by('created')
     if amount:
         coupons = coupons[:amount]
     return list(coupons)

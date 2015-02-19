@@ -19,6 +19,8 @@ urlpatterns = patterns('',
     # API COUPON
     url(r'^api/sandbox/coupon/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'coupon_create.html'}),
     url(r'^api/coupon/create', 'givealittlelove.gall.views.coupon.create'),
+    url(r'^api/sandbox/coupon/get-unsent$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'coupon_getunsent.html'}),
+    url(r'^api/coupon/get-unsent', 'givealittlelove.gall.views.coupon.get_unsent'),
 
 )
 

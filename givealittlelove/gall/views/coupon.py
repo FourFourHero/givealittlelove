@@ -30,3 +30,18 @@ def create(request):
     response_dict = success_dict()
     response_dict['coupons'] = coupons
     return render_json(request, response_dict)
+
+@csrf_exempt
+def get_unsent(request):
+    amount = get_request_var(request, 'amount')
+
+    try:
+        amount = int(amount)
+    except:
+        amount = None
+
+    coupons = coupon_api.get_unsent_coupons(amount=amount)
+    # return response
+    response_dict = success_dict()
+    response_dict['coupons'] = coupons
+    return render_json(request, response_dict)
