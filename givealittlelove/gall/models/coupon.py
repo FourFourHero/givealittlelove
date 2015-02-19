@@ -7,7 +7,7 @@ class CouponManager(models.Manager):
     pass
 
 class Coupon(BaseModel):
-    code = models.CharField(max_length=17)
+    code = models.CharField(unique=True, max_length=17)
     sent = models.BooleanField(default=False)
     activation_id = models.IntegerField(default=-1)
     created = models.DateTimeField(auto_now_add=True)

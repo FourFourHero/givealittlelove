@@ -19,7 +19,8 @@ def create(request):
         response_dict['error_msg'] = 'Missing codes param'
         return render_json(request, response_dict)
 
-    codes = codes.split(',')
+    #codes = codes.split(',')
+    codes = [s.strip() for s in codes.splitlines()]
 
     coupons = []
     for code in codes:
