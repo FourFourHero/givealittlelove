@@ -48,3 +48,29 @@ def create(request):
     response_dict['ambassador'] = ambassador
     response_dict['activation'] = activation
     return render_json(request, response_dict)
+
+@require_POST
+@csrf_exempt
+def get_by_code(request):
+    code = get_request_var(request, 'code')
+
+    if not code:
+        response_dict = error_dict()
+        response_dict['error_code'] = 100
+        response_dict['error_msg'] = 'Missing code param'
+        return render_json(request, response_dict)
+
+    ambassador = ambassador_api.get_ambassador_by_code(code)
+    if not ambassador:
+        response_dict = error_dict()
+        response_dict['error_code'] = 200
+        response_dict['error_msg'] = 'Invalid code'
+        return render_json(request, response_dict)
+
+    activations = activation_api.get_activations_by_code(code)
+
+    # return response
+    response_dict = success_dict()
+    response_dict['ambassador'] = ambassador
+    response_dict['activations'] = activations
+    return render_json(request, response_dict)

@@ -34,4 +34,4 @@ def get_activation_by_code(code):
     return activation
 
 def get_activations_by_code(code):
-    return Activation.objects.filter(code=code).order_by('created')
+    return list(Activation.objects.filter(code=code).order_by('created'))

@@ -1,3 +1,4 @@
+import logging
 from ambassador import Ambassador
 from activation import Activation
 
@@ -6,6 +7,7 @@ def model_encode(obj):
     try:
         enc = obj.__json__()
     except:
+        logging.exception('error encoding')
         enc = None
 
     if enc:
