@@ -8,12 +8,17 @@ urlpatterns = patterns('',
     url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
 
     # API
+    # API AMBASSADOR
     url(r'^api/sandbox/ambassador/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'ambassador_create.html'}),
     url(r'^api/ambassador/create', 'givealittlelove.gall.views.ambassador.create'),
+    # API ACTIVATION
     url(r'^api/sandbox/activation/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'activation_create.html'}),
     url(r'^api/activation/create', 'givealittlelove.gall.views.activation.create'),
     url(r'^api/sandbox/activation/get-by-code$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'activation_getbycode.html'}),
     url(r'^api/activation/get-by-code', 'givealittlelove.gall.views.activation.get_by_code'),
+    # API COUPON
+    url(r'^api/sandbox/coupon/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'coupon_create.html'}),
+    url(r'^api/coupon/create', 'givealittlelove.gall.views.coupon.create'),
 
 )
 

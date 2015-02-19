@@ -1,6 +1,7 @@
 import logging
 from ambassador import Ambassador
 from activation import Activation
+from coupon import Coupon
 
 def model_encode(obj):
     enc = None
