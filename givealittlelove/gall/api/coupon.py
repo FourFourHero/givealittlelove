@@ -36,3 +36,7 @@ def get_unsent_coupons(amount=None):
     if amount:
         coupons = coupons[:amount]
     return list(coupons)
+
+def get_unsent_coupon():
+    return get_unsent_coupons(amount=1)[0]
+

@@ -43,13 +43,11 @@ def create(request):
         response_dict['error_msg'] = 'Invalid code'
         return render_json(request, response_dict)
 
+    last_activation = activation_api.get_last_activation_by_code(code)
     activation = activation_api.create_activation(name, email, code)
 
-
-    activations = activation_api.get_activations_by_code(code)
-    if len(activations) >= 1:
-        ambassador = ambassador_api.get_ambassador_by_code(code)
-        _send_coupons(ambassador, activations)
+    if last_activation:
+        _send_coupon(ambassador, last_activation, activation)
 
     # return response
     response_dict = success_dict()
@@ -98,14 +96,11 @@ def test_mail(request):
 ### PRIVATE
 ###
 
-def _send_coupons(ambassador, activations):
-    coupons = coupon_api.get_unsent_coupons(amount=len(activations))
-    count = 0
-    for activation in activations:
-        coupon = coupons[count]
-        mail_api.send_coupon_mail(ambassador, activation, coupon)
-
-        coupon.activation_id = activation.id
-        coupon.sent = True
-        coupon_api.update_coupon(coupon)
-        count += 1
+def _send_coupon(ambassador, last_activation, activation):
+    coupon = coupon_api.get_unsent_coupon()
+    mail_api.send_coupon_mail(ambassador, last_activation, activation, coupon)
+    last_activation.coupon_id = coupon.id
+    activation_api.update_activation(last_activation)
+    coupon.activation_id = activation.id
+    coupon.sent = True
+    coupon_api.update_coupon(coupon)
