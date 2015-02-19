@@ -1,6 +1,8 @@
 import logging
 
 from django.core.mail import EmailMultiAlternatives
+from givealittlelove.gall.mail.ambassador import text_template as ambassador_welcome_text_template
+from givealittlelove.gall.mail.ambassador import html_template as ambassador_welcome_html_template
 from givealittlelove.gall.mail.coupon import text_template as coupon_text_template
 from givealittlelove.gall.mail.coupon import html_template as coupon_html_template
 
@@ -14,9 +16,19 @@ def send_test_mail():
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
+def send_ambassador_welcome_mail(ambassador):
+    subject = 'Welcome to the Happiness, Laughter and Love Ambassador program!'
+    from_email = 'welcome@givealittlelove.ag'
+    to = ambassador.email
+    text_content = ambassador_welcome_text_template % (ambassador.name, ambassador.code)
+    html_content = ambassador_welcome_html_template % (ambassador.name, ambassador.code)
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
 def send_coupon_mail(ambassador, activation, coupon):
     subject = 'GALL TEST A little love from American Greetings!'
-    from_email = 'aschulak@gmail.com'
+    from_email = 'welcome@givealittlelove.ag'
     to = activation.email
     coupon_url = 'http://www.givealittlelove.ag/coupon/' + coupon.code
     text_content = coupon_text_template % (activation.name, coupon_url, ambassador.name)
