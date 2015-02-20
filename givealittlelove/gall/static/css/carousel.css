@@ -48,7 +48,7 @@ a, a:hover, a:focus, a:active {
 /* Carousel base class */
 .carousel {
   height: 400px;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
