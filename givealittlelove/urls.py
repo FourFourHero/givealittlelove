@@ -5,11 +5,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'givealittlelove.gall.views.site.show', {'template_name':'home.html'}),
+    url(r'^bootstrap/', 'givealittlelove.gall.views.site.show', {'template_name':'bootstrap.html'}),
     url(r'^admin/', include(admin.site.urls)),
 
 
     # API
-    url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),    
+    url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
     url(r'^api/activation/test-mail', 'givealittlelove.gall.views.activation.test_mail'),
     # API AMBASSADOR
     url(r'^api/sandbox/ambassador/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'ambassador_create.html'}),
@@ -24,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^api/coupon/create', 'givealittlelove.gall.views.coupon.create'),
     url(r'^api/sandbox/coupon/get-unsent$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'coupon_getunsent.html'}),
     url(r'^api/coupon/get-unsent', 'givealittlelove.gall.views.coupon.get_unsent'),
-    
+
 
 )
 
