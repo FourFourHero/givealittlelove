@@ -104,6 +104,9 @@
             {% gravatar activation.email 150 %}<br/>
                 <b>{{activation.name}}</b><br/>{{activation.created}}<br/><br/>
             {% endfor %}
+            <span class="glyphicon glyphicon-arrow-down"></span><br/><br/>
+            {% gravatar activation.email 150 %}<br/>
+                <b>You</b><br/>{{activation.created}}<br/><br/>
 
           </p>
         </div>
