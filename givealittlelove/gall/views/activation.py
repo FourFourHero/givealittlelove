@@ -80,6 +80,11 @@ def create(request):
     response_dict['last_activation'] = last_activation
     response_dict['activation'] = activation
     response_dict['activations'] = activations
+    if last_activation:
+        response_dict['card_giver_name'] = last_activation.name
+    else:
+        response_dict['card_giver_name'] = ambassador.name
+
     if not origin:
         return render_json(request, response_dict)
     else:

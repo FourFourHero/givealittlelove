@@ -75,7 +75,11 @@
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">Fantastic! <span class="text-muted">Time to pay it forward and start spreading some Happiness, Laughter, and Love of your own!</span></h2>
+          {% if last_activation %}
           <p class="lead"><b>{{last_activation.name}}</b>, the person who gave you this card, is going to be so thrilled! As a thank you for paying it forward we just sent him a free gift. You'll be sent a free gift too when you keep the connection going.</p>
+        {% else %}
+        <p class="lead">You're the first to redeem this card! Now make your Happiness, Laughter, and Love Ambassador, <b>{{ambassador.name}}</b>, proud my spreading the love!'</p>
+        {% endif %}
         </div>
       </div>
       <hr class="featurette-divider">
