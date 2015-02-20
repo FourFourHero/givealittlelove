@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', 'givealittlelove.gall.views.site.home'),
     url(r'^bootstrap', 'givealittlelove.gall.views.site.show', {'template_name':'bootstrap.html'}),
     url(r'^error', 'givealittlelove.gall.views.site.show', {'template_name':'error.html'}),
+    url(r'^robots.txt', 'givealittlelove.gall.views.site.show', {'template_name':'robots.html'}),
     url(r'^admin/', include(admin.site.urls)),
 
     # SITE
