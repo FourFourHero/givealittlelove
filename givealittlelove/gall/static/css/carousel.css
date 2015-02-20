@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   color: #5a5a5a;
 /*  color: #EB5B5B;*/
 }
@@ -84,7 +84,9 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  /*margin: 10px 0; /* Space out the Bootstrap <hr> more */
+  margin-top: 20px;
+
 }
 
 /* Thin out the marketing headings */
