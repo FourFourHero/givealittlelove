@@ -28,7 +28,7 @@ def send_ambassador_welcome_mail(ambassador):
 
 def send_coupon_mail(ambassador, last_activation, activation, coupon):
     subject = "A little love for paying it forward"
-    from_email = 'welcome@givealittlelove.ag'
+    from_email = 'thankyou@givealittlelove.ag'
     to = activation.email
     text_content = coupon_text_template % (last_activation.name, activation.name, coupon.code, ambassador.name)
     html_content = coupon_html_template % (last_activation.name, activation.name, coupon.code, ambassador.name)
