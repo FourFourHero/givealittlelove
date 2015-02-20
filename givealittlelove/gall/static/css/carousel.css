@@ -5,9 +5,16 @@
 body {
   padding-bottom: 20px;
   color: #5a5a5a;
-/*  color: #EB5B5B;*/
+/*  color: #EB5B5B; */
 }
 
+ag {
+    color: black;
+}
+
+a, a:hover, a:focus, a:active {
+    color: black;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */

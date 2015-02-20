@@ -66,7 +66,7 @@
         <br/><br/>
         <form class="form-signin" method="POST" action="/api/activation/create">
                 <h2 class="form-signin-heading">Received a Card</h2>
-                Congratulations! Someone has decided to send some Happiness, Laughter and Love your way! Sign up below (we promise we won't send you any spam!), and pass the card on to someone else. When they signup you will receive a gift from American greetings.
+                Congratulations! Someone has decided to send some Happiness, Laughter and Love your way! Sign up below (we promise we won't send you any spam!), and we will send the person who gave you this card a gift! When the person you pay it forward to signs up, we will send you a gift!
                 <input type="hidden" name="origin" value="web"/>
                 <label for="inputName" class="sr-only">First name</label>
                 <input type="text" name="name" id="inputName" class="form-control" placeholder="First name" required autofocus>
@@ -75,13 +75,13 @@
                 <label for="inputCode" class="sr-only">Code</label>
                 <input type="text" name="code" id="inputCode" class="form-control" placeholder="Code" required>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+                <button class="btn btn-lg btn-danger btn-block" type="submit">Let's do this!</button>
               </form>
         <br/><br/>
       <!-- FOOTER -->
       <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2015 <a href="http://americangreetings.com">American Greetings</a></p>
+        <p class="pull-right"><a class="ag" href="#">Back to top</a></p>
+        <p class="ag">&copy; 2015 <a class="ag" href="http://americangreetings.com">American Greetings</a></p>
       </footer>
 
     </div><!-- /.container -->
