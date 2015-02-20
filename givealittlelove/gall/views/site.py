@@ -10,3 +10,4 @@ logger = logging.getLogger(__name__)
 def show(request, template_name):
     response_dict = success_dict()
     return render_template(request, response_dict, 'gall/site/' + template_name)
+

@@ -10,8 +10,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # SITE
-    url(r'^ambassador', 'givealittlelove.gall.views.site.ambassador', {'template_name':'ambassador.html'}),
-
+    url(r'^ambassador', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador.html'}),
+    url(r'^ambassador/signup', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_signup.html'}),
+    url(r'^ambassador/sucess', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_success.html'}),
 
     # API
     url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
@@ -19,6 +20,8 @@ urlpatterns = patterns('',
     # API AMBASSADOR
     url(r'^api/sandbox/ambassador/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'ambassador_create.html'}),
     url(r'^api/ambassador/create', 'givealittlelove.gall.views.ambassador.create'),
+    url(r'^api/ambassador/passthru', 'givealittlelove.gall.views.ambassador.passthru'),
+
     # API ACTIVATION
     url(r'^api/sandbox/activation/create$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'activation_create.html'}),
     url(r'^api/activation/create', 'givealittlelove.gall.views.activation.create'),

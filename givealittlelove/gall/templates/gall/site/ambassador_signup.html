@@ -9,13 +9,13 @@
     <meta name="author" content="">
     <link rel="icon" href="/static/images/favicon.ico">
 
-    <title>Fail Train</title>
+    <title>Ambassador Enrollment</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/css/carousel.css" rel="stylesheet">
+    <link href="/static/css/ambassador1.css" rel="stylesheet">
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -63,22 +63,17 @@
       </div>
     </div>
 
-    <div class="container marketing">
+    <div class="container">
 
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">An error has occurred. <span class="text-muted">We're really sorry about this.</span></h2>
-          <p class="lead">{{error_msg}}</p>
-        </div>
-      </div>
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
+        <form class="form-signin" method="POST" action="/api/ambassador/create">
+                <input type="hidden" name="origin" value="web"/>
+                <h2 class="form-signin-heading">Ambassador Enrollment</h2>
+                <label for="inputName" class="sr-only">First name</label>
+                <input type="text" name="name" id="inputName" class="form-control" placeholder="First name" required autofocus>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Proceed</button>
+              </form>
 
       <!-- FOOTER -->
       <footer>

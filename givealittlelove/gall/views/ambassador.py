@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 def create(request):
     name = get_request_var(request, 'name')
     email = get_request_var(request, 'email')
+    origin = get_request_var(request, 'origin')
 
     if not name:
         response_dict = error_dict()
@@ -34,4 +35,28 @@ def create(request):
     # return response
     response_dict = success_dict()
     response_dict['ambassador'] = ambassador
-    return render_json(request, response_dict)
+    if not origin:
+        return render_json(request, response_dict)
+    else:
+        return render_template(request, response_dict, 'gall/site/ambassador_success.html')
+
+@require_POST
+@csrf_exempt
+def passthru(request):
+    password = get_request_var(request, 'password')
+
+    if not password:
+        response_dict = error_dict()
+        response_dict['error_code'] = 100
+        response_dict['error_msg'] = 'Missing password param'
+        return render_template(request, response_dict, 'gall/site/error.html')
+
+    if password != 'iloveteambanzai':
+        response_dict = error_dict()
+        response_dict['error_code'] = 200
+        response_dict['error_msg'] = 'Incorrect password'
+        return render_template(request, response_dict, 'gall/site/error.html')
+
+    # return response
+    response_dict = success_dict()
+    return render_template(request, response_dict, 'gall/site/ambassador_signup.html')
