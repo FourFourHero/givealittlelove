@@ -9,6 +9,9 @@ urlpatterns = patterns('',
     url(r'^error', 'givealittlelove.gall.views.site.show', {'template_name':'error.html'}),
     url(r'^admin/', include(admin.site.urls)),
 
+    # SITE
+    url(r'^ambassador', 'givealittlelove.gall.views.site.ambassador', {'template_name':'ambassador.html'}),
+
 
     # API
     url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
