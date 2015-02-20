@@ -34,6 +34,14 @@ def get_ambassador_by_code(code):
         pass
     return ambassador
 
+def get_ambassador_by_email(email):
+    ambassador = None
+    try:
+        ambassador = Ambassador.objects.get(email=email)
+    except:
+        logging.exception('ambassador by email')
+    return ambassador
+
 def __create_code():
     random = str(uuid.uuid4())
     random = random.upper()

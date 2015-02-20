@@ -5,6 +5,7 @@ from django.views.decorators.http import require_POST
 
 from givealittlelove.gall.views.response import *
 import givealittlelove.gall.api.ambassador as ambassador_api
+import givealittlelove.gall.api.activation as activation_api
 import givealittlelove.gall.api.mail as mail_api
 
 logger = logging.getLogger(__name__)
@@ -33,6 +34,17 @@ def create(request):
             return render_json(request, response_dict)
         else:
             return render_template(request, response_dict, 'gall/site/error.html')
+
+    ambassador = ambassador_api.get_ambassador_by_email(email)
+    if ambassador:
+        activations = activation_api.get_activations_by_code(ambassador.code)
+        response_dict = success_dict()
+        response_dict['ambassador'] = ambassador
+        response_dict['activations'] = activations
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/ambassador_connections.html')
 
     ambassador = ambassador_api.create_ambassador(name, email)
 
