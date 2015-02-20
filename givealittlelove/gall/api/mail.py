@@ -14,7 +14,7 @@ def send_test_mail():
     html_content = '<p>This is an <strong>important</strong> message.</p>'
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
-    #msg.send()
+    msg.send()
 
 def send_ambassador_welcome_mail(ambassador):
     subject = 'Welcome to the Happiness, Laughter and Love Ambassador Program!'
@@ -24,7 +24,7 @@ def send_ambassador_welcome_mail(ambassador):
     html_content = ambassador_welcome_html_template % (ambassador.name, ambassador.code)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
-    #msg.send()
+    msg.send()
 
 def send_coupon_mail(ambassador, last_activation, activation, coupon):
     subject = "A little love for paying it forward"
