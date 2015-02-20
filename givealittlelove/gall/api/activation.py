@@ -34,3 +34,6 @@ def get_last_activation_by_code(code):
 
 def get_activations_by_code(code):
     return list(Activation.objects.filter(code=code).order_by('created'))
+
+def get_last_activations(amount=5):
+    return list(Activation.objects.all().order_by('-created')[:5])

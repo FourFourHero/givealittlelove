@@ -4,7 +4,7 @@ from givealittlelove import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'givealittlelove.gall.views.site.show', {'template_name':'home.html'}),
+    url(r'^$', 'givealittlelove.gall.views.site.home'),
     url(r'^bootstrap', 'givealittlelove.gall.views.site.show', {'template_name':'bootstrap.html'}),
     url(r'^error', 'givealittlelove.gall.views.site.show', {'template_name':'error.html'}),
     url(r'^admin/', include(admin.site.urls)),
