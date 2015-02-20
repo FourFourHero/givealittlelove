@@ -34,4 +34,4 @@ def send_coupon_mail(ambassador, last_activation, activation, coupon):
     html_content = coupon_html_template % (last_activation.name, activation.name, coupon.code, ambassador.name)
     msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
     msg.attach_alternative(html_content, "text/html")
-    #msg.send()
+    msg.send()
