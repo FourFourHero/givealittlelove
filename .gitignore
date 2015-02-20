@@ -5,5 +5,4 @@ gall_db
 *.DS_Store
 *.db
 staticfiles
-static
 settings_local.py
