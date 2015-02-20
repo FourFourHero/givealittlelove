@@ -50,6 +50,7 @@ a, a:hover, a:focus, a:active {
   height: 400px;
   margin-bottom: 10px;
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
@@ -140,6 +141,6 @@ a, a:hover, a:focus, a:active {
 
 @media (min-width: 992px) {
   .featurette-heading {
-    margin-top: 120px;
+    margin-top: 20px;
   }
 }
