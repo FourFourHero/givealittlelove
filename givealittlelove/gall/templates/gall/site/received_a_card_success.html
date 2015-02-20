@@ -9,6 +9,8 @@
     <meta name="author" content="">
     <link rel="icon" href="/static/images/favicon.ico">
 
+    {% load gravatar %}
+
     <title>Ambassador Enrollment</title>
 
     <!-- Bootstrap core CSS -->
@@ -79,12 +81,15 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Let's see who you are connected too...'</h2>
-          <p class="lead">
-            Your Happiness, Laughter, and Love Ambassador: {{ambassador.name}}
+          <h2 class="featurette-heading">Let's see who you are connected to...</h2>
+          <p class="lead" align="center">
+            {% gravatar ambassador.email 150 %}
             <br/>
+            <b>{{ambassador.name}}</b><br/>Your Happiness, Laughter, and Love Ambassador
+            <br/><br/>
             {% for activation in activations %}
-                <b>{{activation.name}}</b><br/>
+            {% gravatar activation.email 150 %}<br/>
+                <b>{{activation.name}}</b><br/>{{activation.created}}<br/><br/>
             {% endfor %}
 
           </p>
