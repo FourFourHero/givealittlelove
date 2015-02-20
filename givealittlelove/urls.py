@@ -10,6 +10,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # SITE
+
+    url(r'^about', 'givealittlelove.gall.views.site.show', {'template_name':'about.html'}),
+
     url(r'^ambassador', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador.html'}),
     url(r'^ambassador/signup', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_signup.html'}),
     url(r'^ambassador/sucess', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_success.html'}),
