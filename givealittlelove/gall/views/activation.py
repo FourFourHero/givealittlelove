@@ -57,13 +57,22 @@ def create(request):
         else:
             return render_template(request, response_dict, 'gall/site/error.html')
 
+    activations = activation_api.get_activations_by_code(code)
+    for activation in activations:
+        if email.lower() == activation.email.lower():
+            response_dict = error_dict()
+            response_dict['error_code'] = 500
+            response_dict['error_msg'] = 'Already redeemed'
+            if not origin:
+                return render_json(request, response_dict)
+            else:
+                return render_template(request, response_dict, 'gall/site/error.html')
+
     last_activation = activation_api.get_last_activation_by_code(code)
     activation = activation_api.create_activation(name, email, code)
 
     if last_activation:
         _send_coupon(ambassador, last_activation, activation)
-
-    activations = activation_api.get_activations_by_code(code)
 
     # return response
     response_dict = success_dict()
