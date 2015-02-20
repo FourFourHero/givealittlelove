@@ -17,31 +17,45 @@ def create(request):
     name = get_request_var(request, 'name')
     email = get_request_var(request, 'email')
     code = get_request_var(request, 'code')
+    origin = get_request_var(request, 'origin')
 
     if not name:
         response_dict = error_dict()
         response_dict['error_code'] = 100
         response_dict['error_msg'] = 'Missing name param'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
 
     if not email:
         response_dict = error_dict()
         response_dict['error_code'] = 200
         response_dict['error_msg'] = 'Missing email param'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
 
     if not code:
         response_dict = error_dict()
         response_dict['error_code'] = 300
         response_dict['error_msg'] = 'Missing code param'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
+
 
     ambassador = ambassador_api.get_ambassador_by_code(code)
     if not ambassador:
         response_dict = error_dict()
         response_dict['error_code'] = 400
         response_dict['error_msg'] = 'Invalid code'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
 
     last_activation = activation_api.get_last_activation_by_code(code)
     activation = activation_api.create_activation(name, email, code)
@@ -49,11 +63,18 @@ def create(request):
     if last_activation:
         _send_coupon(ambassador, last_activation, activation)
 
+    activations = activation_api.get_activations_by_code(code)
+
     # return response
     response_dict = success_dict()
     response_dict['ambassador'] = ambassador
+    response_dict['last_activation'] = last_activation
     response_dict['activation'] = activation
-    return render_json(request, response_dict)
+    response_dict['activations'] = activations
+    if not origin:
+        return render_json(request, response_dict)
+    else:
+        return render_template(request, response_dict, 'gall/site/received_a_card_success.html')
 
 @require_POST
 @csrf_exempt

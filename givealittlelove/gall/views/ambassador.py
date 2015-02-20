@@ -20,13 +20,19 @@ def create(request):
         response_dict = error_dict()
         response_dict['error_code'] = 100
         response_dict['error_msg'] = 'Missing name param'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
 
     if not email:
         response_dict = error_dict()
         response_dict['error_code'] = 200
         response_dict['error_msg'] = 'Missing email param'
-        return render_json(request, response_dict)
+        if not origin:
+            return render_json(request, response_dict)
+        else:
+            return render_template(request, response_dict, 'gall/site/error.html')
 
     ambassador = ambassador_api.create_ambassador(name, email)
 

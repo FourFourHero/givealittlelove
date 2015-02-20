@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     url(r'^ambassador/signup', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_signup.html'}),
     url(r'^ambassador/sucess', 'givealittlelove.gall.views.site.show', {'template_name':'ambassador_success.html'}),
 
+    url(r'^received-a-card', 'givealittlelove.gall.views.site.show', {'template_name':'received_a_card.html'}),
+    url(r'^received-a-card/success', 'givealittlelove.gall.views.site.show', {'template_name':'received_a_card_success.html'}),
+
     # API
     url(r'^api/sandbox/home$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'home.html'}),
     url(r'^api/activation/test-mail', 'givealittlelove.gall.views.activation.test_mail'),

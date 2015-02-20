@@ -15,7 +15,7 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/css/carousel.css" rel="stylesheet">
+    <link href="/static/css/ambassador1.css" rel="stylesheet">
   </head>
 <!-- NAVBAR
 ================================================== -->
@@ -63,31 +63,22 @@
       </div>
     </div>
 
-    <div class="container marketing">
+    <div class="container">
+        <br/><br/>
+        <form class="form-signin" method="POST" action="/api/activation/create">
+                <h2 class="form-signin-heading">Received a Card</h2>
+                Congratulations! Someone has decided to send some Happiness, Laughter and Love your way! Sign up below (we promise we won't send you any spam!), and pass the card on to someone else. When they signup you will receive a gift from American greetings.
+                <input type="hidden" name="origin" value="web"/>
+                <label for="inputName" class="sr-only">First name</label>
+                <input type="text" name="name" id="inputName" class="form-control" placeholder="First name" required autofocus>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <label for="inputCode" class="sr-only">Code</label>
+                <input type="text" name="code" id="inputCode" class="form-control" placeholder="Code" required>
 
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">You're all signed up! <span class="text-muted">Time to start spreading a little Happiness, Laughter, and Love!</span></h2>
-          <p class="lead">Your personal code is: <b>{{ambassador.code}}</b>.</p>
-To get started spreading Happiness, Laughter, and Love:
-<ol>
-    <li>Get out your card
-    <li>Get your favorite pen
-    <li>Write your personal code in the clearly marked space
-    <li>Find someone in need of a little love
-    <li>Say something nice to them, and give them your card!
-    </ol>
-        </div>
-      </div>
-      <hr class="featurette-divider">
-
-      <!-- /END THE FEATURETTES -->
-
-
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+              </form>
+        <br/><br/>
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
