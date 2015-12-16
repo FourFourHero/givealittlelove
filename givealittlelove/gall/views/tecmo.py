@@ -15,7 +15,7 @@ def roll_team(not_team=-1):
 
     return roll
 
-def vs(request, template_name):
+def vs(request):
     logging.warn('vs')
     team1 = roll_team()
     team2 = roll_team(not_team=team1)
