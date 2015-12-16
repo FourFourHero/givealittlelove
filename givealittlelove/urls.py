@@ -41,7 +41,7 @@ urlpatterns = patterns('',
     url(r'^api/coupon/get-unsent', 'givealittlelove.gall.views.coupon.get_unsent'),
 
     # TECMO
-    url(r'^tecmo', 'givealittlelove.gall.views.tecmo.home'),
+    url(r'^tecmo$', 'givealittlelove.gall.views.tecmo.home'),
     url(r'^tecmo/vs', 'givealittlelove.gall.views.tecmo.vs'),
 
 )
