@@ -16,6 +16,7 @@ def roll_team(not_team=-1):
     return roll
 
 def vs(request, template_name):
+    logging.warn('vs')
     team1 = roll_team()
     team2 = roll_team(not_team=team1)
     response_dict = success_dict()
@@ -24,5 +25,6 @@ def vs(request, template_name):
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
 
 def home(request):
+    logging.warn('home')
     response_dict = success_dict()
     return render_template(request, response_dict, 'gall/site/tecmo.html')
