@@ -40,6 +40,9 @@ urlpatterns = patterns('',
     url(r'^api/sandbox/coupon/get-unsent$', 'givealittlelove.gall.views.apisandbox.show', {'template_name':'coupon_getunsent.html'}),
     url(r'^api/coupon/get-unsent', 'givealittlelove.gall.views.coupon.get_unsent'),
 
+    # TECMO
+    url(r'^tecmo', 'givealittlelove.gall.views.tecmo.home'),
+    url(r'^vs', 'givealittlelove.gall.views.tecmo.vs'),
 
 )
 
