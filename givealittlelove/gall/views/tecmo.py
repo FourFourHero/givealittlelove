@@ -1,9 +1,6 @@
 import logging
 import random
 
-from django.contrib.admin.views.decorators import staff_member_required
-import givealittlelove.gall.api.activation as activation_api
-
 from givealittlelove.gall.views.response import *
 
 logger = logging.getLogger(__name__)
@@ -18,7 +15,6 @@ def roll_team(not_team=-1):
 
     return roll
 
-#@staff_member_required
 def vs(request, template_name):
     team1 = roll_team()
     team2 = roll_team(not_team=team1)
@@ -28,5 +24,5 @@ def vs(request, template_name):
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
 
 def home(request):
+    response_dict = success_dict()
     return render_template(request, response_dict, 'gall/site/tecmo.html')
-
