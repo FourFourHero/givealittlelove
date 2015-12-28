@@ -5,20 +5,116 @@ from givealittlelove.gall.views.response import *
 
 logger = logging.getLogger(__name__)
 
-import random
+class Team(object):
+    name = None
+    id = -1
+    tiers = []
 
-def roll_team(not_team=-1):
-    roll = random.randint(1,28)
+    def __init__(name, id, tiers):
+        self.name = name
+        self.id = id
+        self.tiers = tiers
 
-    while roll == not_team:
-        roll = random.randint(1,28)
+# http://tecmotourney.blogspot.com/p/team-tiers.html
+def setup_teams_tomczak():
+    teams = []
 
+    team = Team('Oilers', 10, [1]) # oilers
+    teams.append(team)
+    team = Team('Giants', 13, [1]) # giants
+    teams.append(team)
+    team = Team('Bills', 25, [1]) # bills
+    teams.append(team)
+    team = Team('49ers', 28, [1]) # 49ers
+    teams.append(team)
+
+    team = Team('Raiders', 7, [1, 2]) # raiders
+    teams.append(team)
+
+    team = Team('Vikings', 1, [2]) # vikings
+    teams.append(team)
+    team = Team('Eagles', 15, [2]) # eagles
+    teams.append(team)
+    team = Team('Dolphins', 16, [2]) # dolphins
+    teams.append(team)
+    team = Team('Chiefs', 19, [2]) # chiefs
+    teams.append(team)
+
+    team = Team('Rams', 6, [2, 3]) # rams
+    teams.append(team)
+    team = Team('Bears', 27, [2, 3]) # bears
+    teams.append(team)
+
+    team = Team('Redskins', 5, [3]) # redskins
+    teams.append(team)
+    team = Team('Chargers', 20, [3]) # chargers
+    teams.append(team)
+    team = Team('Broncos', 24, [3]) # broncos
+    teams.append(team)
+    team = Team('Bengals', 26, [3]) # bengals
+    teams.append(team)
+
+    team = Team('Lions', 11, [3, 4]) # lions
+    teams.append(team)
+    team = Team('Falcons', 14, [3, 4]) # falcons
+    teams.append(team)
+
+    team = Team('Saints', 4, [4]) # saints
+    teams.append(team)
+    team = Team('Cowboys', 17, [4]) # cowboys
+    teams.append(team)
+    team = Team('Cardinals', 21, [4]) # cardinals
+    teams.append(team)
+    team = Team('Bucaneers', 22, [4]) # buccaneers
+    teams.append(team)
+
+    team = Team('Steelers', 2, [4, 5]) # steelers
+    teams.append(team)
+    team = Team('Jets', 12, [4, 5]) # jets
+    teams.append(team)
+
+    team = Team('Seahawks', 3, [5]) # seahawks
+    teams.append(team)
+    team = Team('Patriots', 8, [5]) # patriots
+    teams.append(team)
+    team = Team('Packers', 9, [5]) # packers
+    teams.append(team)
+    team = Team('Colts', 18, [5]) # colts
+    teams.append(team)
+    team = Team('Browns', 23, [5]) # browns
+    teams.append(team)
+
+    return teams
+
+def roll_tier():
+    logging.debug('roll_tier')
+    roll = random.randint(1,5)
+    logging.debug('tier roll:' + str(roll))
     return roll
+
+def roll_team(teams, tier, not_team=-1):
+    logging.info('roll_team, tier: ' + str(tier) + ' not_team: ' + str(not_team))
+    roll = random.randint(1,28)
+    logging.info('team roll: ' + str(roll))
+
+    team = teams[roll-1]
+
+    while tier not in team.tiers and team.id == not_team:
+        roll = random.randint(1,28)
+        logging.info('backup team roll: ' + str(roll))
+        team = teams[roll-1]
+        logging.debug('team: ' + team.name)
+
+    return team
 
 def vs(request):
     logging.warn('vs')
-    team1 = roll_team()
-    team2 = roll_team(not_team=team1)
+
+    teams = setup_teams_tomczak()
+    tier = roll_tier()
+
+    team1 = roll_team(teams, tier)
+    team2 = roll_team(teams, tier, not_team=team1.id)
     response_dict = success_dict()
     response_dict['team1'] = team1
     response_dict['team2'] = team2
