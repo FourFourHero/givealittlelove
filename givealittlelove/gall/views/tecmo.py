@@ -138,7 +138,7 @@ def _setup_teams_rook():
 
     team = Team('Vikings', 1, [3]) # vikings
     teams.append(team)
-    team = Team('Rams', 6, [2, 3]) # rams
+    team = Team('Rams', 6, [3]) # rams
     teams.append(team)
     team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
