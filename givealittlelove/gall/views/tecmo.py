@@ -10,7 +10,7 @@ class Team(object):
     id = -1
     tiers = []
 
-    def __init__(name, id, tiers):
+    def __init__(self, name, id, tiers):
         self.name = name
         self.id = id
         self.tiers = tiers
