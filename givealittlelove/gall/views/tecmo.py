@@ -118,9 +118,9 @@ def setup_teams_rook():
     teams.append(team)
     team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
-    team = Team('Lions', 11, [3]) # lions
-    teams.append(team)
     team = Team('Falcons', 14, [3]) # falcons
+    teams.append(team)
+    team = Team('Lions', 11, [3]) # lions
     teams.append(team)
     team = Team('Buccaneers', 22, [3]) # buccaneers
     teams.append(team)
@@ -149,6 +149,8 @@ def setup_teams_rook():
     team = Team('Seahawks', 3, [5]) # seahawks
     teams.append(team)
     team = Team('Colts', 18, [5]) # colts
+    teams.append(team)
+    team = Team('Patriots', 8, [5]) # patriots
     teams.append(team)
 
     logging.info('teams size: ' + str(len(teams)))
