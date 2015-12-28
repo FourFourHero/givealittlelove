@@ -179,8 +179,8 @@ def roll_team(teams, tier, not_team=-1):
 
     return team
 
-def vs(request):
-    logging.warn('vs')
+def vs_tomczak(request):
+    logging.warn('vs_tomczak')
 
     teams = setup_teams_tomczak()
     tier = roll_tier()
@@ -190,6 +190,7 @@ def vs(request):
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = 'Tomczak'
+    response_dict['form_action'] = '/vs/tomczak'
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
@@ -205,6 +206,7 @@ def vs_rook(request):
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = 'Rook'
+    response_dict['form_action'] = '/vs/rook'
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
