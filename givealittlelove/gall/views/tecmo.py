@@ -99,12 +99,13 @@ def roll_team(teams, tier, not_team=-1):
     logging.info('team roll: ' + str(roll))
 
     team = teams[roll-1]
+    logging.info('team: ' + team.name)
 
     while tier not in team.tiers or team.img_id == not_team:
         roll = random.randint(1,28)
         logging.info('backup team roll: ' + str(roll))
         team = teams[roll-1]
-        logging.info('team: ' + team.name)
+        logging.info('backup team: ' + team.name)
 
     return team
 
@@ -117,6 +118,7 @@ def vs(request):
     team1 = roll_team(teams, tier)
     team2 = roll_team(teams, tier, not_team=team1.img_id)
     response_dict = success_dict()
+    response_dict['tier'] = tier
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
