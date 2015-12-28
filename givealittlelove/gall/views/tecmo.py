@@ -190,7 +190,7 @@ def vs_tomczak(request):
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = 'Tomczak'
-    response_dict['form_action'] = '/vs/tomczak'
+    response_dict['form_action'] = '/tecmo/vs/tomczak'
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
@@ -206,7 +206,7 @@ def vs_rook(request):
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = 'Rook'
-    response_dict['form_action'] = '/vs/rook'
+    response_dict['form_action'] = '/tecmo/vs/rook'
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
