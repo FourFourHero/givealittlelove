@@ -179,7 +179,7 @@ def roll_team(teams, tier, not_team=-1):
 
 def vs_tomczak(request):
     logging.warn('vs_tomczak')
-    teams = setup_teams_rook()
+    teams = setup_teams_tomczak()
     return _vs(request, teams, 'Tomczak', '/tecmo/vs/tomczak')
 
 def vs_rook(request):
