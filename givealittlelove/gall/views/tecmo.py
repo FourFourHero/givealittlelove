@@ -179,32 +179,23 @@ def roll_team(teams, tier, not_team=-1):
 
 def vs_tomczak(request):
     logging.warn('vs_tomczak')
-
-    teams = setup_teams_tomczak()
-    tier = roll_tier()
-
-    team1 = roll_team(teams, tier)
-    team2 = roll_team(teams, tier, not_team=team1.img_id)
-    response_dict = success_dict()
-    response_dict['tier'] = tier
-    response_dict['tier_ranking'] = 'Tomczak'
-    response_dict['form_action'] = '/tecmo/vs/tomczak'
-    response_dict['team1'] = team1
-    response_dict['team2'] = team2
-    return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
+    teams = setup_teams_rook()
+    return _vs(request, teams, 'Tomczak', '/tecmo/vs/tomczak')
 
 def vs_rook(request):
     logging.warn('vs_rook')
-
     teams = setup_teams_rook()
-    tier = roll_tier()
+    return _vs(request, teams, 'Rook', '/tecmo/vs/rook')
 
+def _vs(request, teams, tier_ranking, form_action):
+    logging.warn('_vs')
+    tier = roll_tier()
     team1 = roll_team(teams, tier)
     team2 = roll_team(teams, tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['tier'] = tier
-    response_dict['tier_ranking'] = 'Rook'
-    response_dict['form_action'] = '/tecmo/vs/rook'
+    response_dict['tier_ranking'] = tier_ranking
+    response_dict['form_action'] = form_action
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
