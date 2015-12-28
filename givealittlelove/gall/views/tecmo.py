@@ -85,6 +85,7 @@ def setup_teams_tomczak():
     team = Team('Browns', 23, [5]) # browns
     teams.append(team)
 
+    logging.info('teams size: ' + str(len(teams)))
     return teams
 
 def setup_teams_rook():
@@ -150,6 +151,7 @@ def setup_teams_rook():
     team = Team('Colts', 18, [5]) # colts
     teams.append(team)
 
+    logging.info('teams size: ' + str(len(teams)))
     return teams
 def roll_tier():
     logging.info('roll_tier')
