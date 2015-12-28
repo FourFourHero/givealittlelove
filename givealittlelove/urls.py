@@ -42,7 +42,8 @@ urlpatterns = patterns('',
 
     # TECMO
     url(r'^tecmo$', 'givealittlelove.gall.views.tecmo.home'),
-    url(r'^tecmo/vs', 'givealittlelove.gall.views.tecmo.vs'),
+    url(r'^tecmo/vs$', 'givealittlelove.gall.views.tecmo.vs'),
+    url(r'^tecmo/vs/rook', 'givealittlelove.gall.views.tecmo.vs_rook'),
 
 )
 
