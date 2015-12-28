@@ -66,7 +66,7 @@ def setup_teams_tomczak():
     teams.append(team)
     team = Team('Cardinals', 21, [4]) # cardinals
     teams.append(team)
-    team = Team('Bucaneers', 22, [4]) # buccaneers
+    team = Team('Buccaneers', 22, [4]) # buccaneers
     teams.append(team)
 
     team = Team('Steelers', 2, [4, 5]) # steelers
@@ -91,69 +91,63 @@ def setup_teams_rook():
     logging.info('setup_teams_rook')
     teams = []
 
-    team = Team('Oilers', 10, [1]) # oilers
-    teams.append(team)
-    team = Team('Giants', 13, [1]) # giants
-    teams.append(team)
     team = Team('Bills', 25, [1]) # bills
     teams.append(team)
     team = Team('49ers', 28, [1]) # 49ers
     teams.append(team)
-
-    team = Team('Raiders', 7, [1, 2]) # raiders
+    team = Team('Oilers', 10, [1]) # oilers
     teams.append(team)
 
-    team = Team('Vikings', 1, [2]) # vikings
+    team = Team('Giants', 13, [2]) # giants
     teams.append(team)
-    team = Team('Eagles', 15, [2]) # eagles
+    team = Team('Raiders', 7, [2]) # raiders
     teams.append(team)
     team = Team('Dolphins', 16, [2]) # dolphins
     teams.append(team)
+    team = Team('Eagles', 15, [2]) # eagles
+    teams.append(team)
     team = Team('Chiefs', 19, [2]) # chiefs
     teams.append(team)
+    team = Team('Bears', 27, [2]) # bears
+    teams.append(team)
 
+    team = Team('Vikings', 1, [3]) # vikings
+    teams.append(team)
     team = Team('Rams', 6, [2, 3]) # rams
     teams.append(team)
-    team = Team('Bears', 27, [2, 3]) # bears
-    teams.append(team)
-
     team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
-    team = Team('Chargers', 20, [3]) # chargers
+    team = Team('Lions', 11, [3]) # lions
     teams.append(team)
-    team = Team('Broncos', 24, [3]) # broncos
+    team = Team('Falcons', 14, [3]) # falcons
     teams.append(team)
-    team = Team('Bengals', 26, [3]) # bengals
-    teams.append(team)
-
-    team = Team('Lions', 11, [3, 4]) # lions
-    teams.append(team)
-    team = Team('Falcons', 14, [3, 4]) # falcons
+    team = Team('Buccaneers', 22, [3]) # buccaneers
     teams.append(team)
 
+    team = Team('Cowboys', 17, [4]) # cowboys
+    teams.append(team)
+    team = Team('Bengals', 26, [4]) # bengals
+    teams.append(team)
     team = Team('Saints', 4, [4]) # saints
     teams.append(team)
-    team = Team('Cowboys', 17, [4]) # cowboys
+    team = Team('Broncos', 24, [4]) # broncos
+    teams.append(team)
+    team = Team('Chargers', 20, [4]) # chargers
     teams.append(team)
     team = Team('Cardinals', 21, [4]) # cardinals
     teams.append(team)
-    team = Team('Bucaneers', 22, [4]) # buccaneers
-    teams.append(team)
 
-    team = Team('Steelers', 2, [4, 5]) # steelers
+    team = Team('Jets', 12, [5]) # jets
     teams.append(team)
-    team = Team('Jets', 12, [4, 5]) # jets
+    team = Team('Steelers', 2, [5]) # steelers
     teams.append(team)
-
-    team = Team('Seahawks', 3, [5]) # seahawks
-    teams.append(team)
-    team = Team('Patriots', 8, [5]) # patriots
+    team = Team('Browns', 23, [5]) # browns
     teams.append(team)
     team = Team('Packers', 9, [5]) # packers
     teams.append(team)
-    team = Team('Colts', 18, [5]) # colts
+    team = Team('Seahawks', 3, [5]) # seahawks
     teams.append(team)
-    team = Team('Browns', 23, [5]) # browns
+    team = Team('Colts', 18, [5]) # colts
     teams.append(team)
 
     return teams
