@@ -5,6 +5,29 @@ from givealittlelove.gall.views.response import *
 
 logger = logging.getLogger(__name__)
 
+###
+### CONTROLLER
+###
+
+def vs_tomczak(request):
+    logging.warn('vs_tomczak')
+    teams = _setup_teams_tomczak()
+    return _vs(request, teams, 'Tomczak', '/tecmo/vs/tomczak')
+
+def vs_rook(request):
+    logging.warn('vs_rook')
+    teams = _setup_teams_rook()
+    return _vs(request, teams, 'Rook', '/tecmo/vs/rook')
+
+def home(request):
+    logging.warn('home')
+    response_dict = success_dict()
+    return render_template(request, response_dict, 'gall/site/tecmo.html')
+
+###
+### PRIVATE
+###
+
 class Team(object):
     name = None
     id = -1
@@ -16,7 +39,7 @@ class Team(object):
         self.tiers = tiers
 
 # http://tecmotourney.blogspot.com/p/team-tiers.html
-def setup_teams_tomczak():
+def _setup_teams_tomczak():
     logging.info('setup_teams_tomczak')
     teams = []
 
@@ -89,7 +112,7 @@ def setup_teams_tomczak():
     return teams
 
 # experimental Rook rankings
-def setup_teams_rook():
+def _setup_teams_rook():
     logging.info('setup_teams_rook')
     teams = []
 
@@ -157,13 +180,13 @@ def setup_teams_rook():
     logging.info('teams size: ' + str(len(teams)))
     return teams
 
-def roll_tier():
+def _roll_tier():
     logging.info('roll_tier')
     roll = random.randint(1,5)
     logging.info('tier roll: ' + str(roll))
     return roll
 
-def roll_team(teams, tier, not_team=-1):
+def _roll_team(teams, tier, not_team=-1):
     logging.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
     roll = random.randint(1,28)
     logging.info('team roll: ' + str(roll))
@@ -180,21 +203,11 @@ def roll_team(teams, tier, not_team=-1):
 
     return team
 
-def vs_tomczak(request):
-    logging.warn('vs_tomczak')
-    teams = setup_teams_tomczak()
-    return _vs(request, teams, 'Tomczak', '/tecmo/vs/tomczak')
-
-def vs_rook(request):
-    logging.warn('vs_rook')
-    teams = setup_teams_rook()
-    return _vs(request, teams, 'Rook', '/tecmo/vs/rook')
-
 def _vs(request, teams, tier_ranking, form_action):
     logging.warn('_vs')
-    tier = roll_tier()
-    team1 = roll_team(teams, tier)
-    team2 = roll_team(teams, tier, not_team=team1.img_id)
+    tier = _roll_tier()
+    team1 = _roll_team(teams, tier)
+    team2 = _roll_team(teams, tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = tier_ranking
@@ -202,8 +215,3 @@ def _vs(request, teams, tier_ranking, form_action):
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
-
-def home(request):
-    logging.warn('home')
-    response_dict = success_dict()
-    return render_template(request, response_dict, 'gall/site/tecmo.html')
