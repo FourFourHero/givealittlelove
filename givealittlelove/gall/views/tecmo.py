@@ -115,7 +115,7 @@ def vs(request):
     tier = roll_tier()
 
     team1 = roll_team(teams, tier)
-    team2 = roll_team(teams, tier, not_team=team1.id)
+    team2 = roll_team(teams, tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['team1'] = team1
     response_dict['team2'] = team2
