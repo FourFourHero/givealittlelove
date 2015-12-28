@@ -10,9 +10,9 @@ class Team(object):
     id = -1
     tiers = []
 
-    def __init__(self, name, id, tiers):
+    def __init__(self, name, img_id, tiers):
         self.name = name
-        self.id = id
+        self.img_id = img_id
         self.tiers = tiers
 
 # http://tecmotourney.blogspot.com/p/team-tiers.html
@@ -100,7 +100,7 @@ def roll_team(teams, tier, not_team=-1):
 
     team = teams[roll-1]
 
-    while tier not in team.tiers or team.id == not_team:
+    while tier not in team.tiers or team.img_id == not_team:
         roll = random.randint(1,28)
         logging.info('backup team roll: ' + str(roll))
         team = teams[roll-1]
