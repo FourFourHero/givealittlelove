@@ -4,27 +4,27 @@
     <h1>Tier {{tier}} Matchup!</h1>
 <table>
     <tr>
-        <td>
+        <td align=center>
             <img src='/static/images/helmets/team{{team1.img_id}}.png'>
             <br/>
             <font color="white">{{team1.name}}</font>
             <br/>
-            <font color="white">High Seed</font>
+            <font color="white" size=-1>High Seed</font>
         </td>
         <td><font color="white">VS</font></td>
-        <td>
+        <td align=center>
             <img src='/static/images/helmets/team{{team2.img_id}}.png'>
             <br/>
             <font color="white">{{team2.name}}</font>
             <br/>
-            <font color="white">Low Seed</font>
+            <font color="white" size=-1>Low Seed</font>
         </td>
     </tr>
 </table>
 <br/>
 <br/>
 <form action='/tecmo/vs' method='get'>
-<input type='submit' text='Create Matchup!' value='Create Matchup!'>
+<input type='submit' text='Create New Matchup!' value='Create New Matchup!'>
 </form>
 </center>
 </font>
