@@ -88,6 +88,7 @@ def setup_teams_tomczak():
     logging.info('teams size: ' + str(len(teams)))
     return teams
 
+# experimental Rook rankings
 def setup_teams_rook():
     logging.info('setup_teams_rook')
     teams = []
@@ -155,6 +156,7 @@ def setup_teams_rook():
 
     logging.info('teams size: ' + str(len(teams)))
     return teams
+
 def roll_tier():
     logging.info('roll_tier')
     roll = random.randint(1,5)
@@ -169,6 +171,7 @@ def roll_team(teams, tier, not_team=-1):
     team = teams[roll-1]
     logging.info('team: ' + team.name)
 
+    # if the team is not in the same tier, or is the same team already picked, find another
     while tier not in team.tiers or team.img_id == not_team:
         roll = random.randint(1,28)
         logging.info('backup team roll: ' + str(roll))
