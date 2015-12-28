@@ -17,6 +17,7 @@ class Team(object):
 
 # http://tecmotourney.blogspot.com/p/team-tiers.html
 def setup_teams_tomczak():
+    logging.info('setup_teams_tomczak')
     teams = []
 
     team = Team('Oilers', 10, [1]) # oilers
@@ -87,23 +88,23 @@ def setup_teams_tomczak():
     return teams
 
 def roll_tier():
-    logging.debug('roll_tier')
+    logging.info('roll_tier')
     roll = random.randint(1,5)
-    logging.debug('tier roll:' + str(roll))
+    logging.info('tier roll: ' + str(roll))
     return roll
 
 def roll_team(teams, tier, not_team=-1):
-    logging.info('roll_team, tier: ' + str(tier) + ' not_team: ' + str(not_team))
+    logging.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
     roll = random.randint(1,28)
     logging.info('team roll: ' + str(roll))
 
     team = teams[roll-1]
 
-    while tier not in team.tiers and team.id == not_team:
+    while tier not in team.tiers or team.id == not_team:
         roll = random.randint(1,28)
         logging.info('backup team roll: ' + str(roll))
         team = teams[roll-1]
-        logging.debug('team: ' + team.name)
+        logging.info('team: ' + team.name)
 
     return team
 
