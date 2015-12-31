@@ -116,15 +116,15 @@ def _setup_teams_rook():
     logging.info('setup_teams_rook')
     teams = []
 
-    team = Team('Bills', 25, [1]) # bills
-    teams.append(team)
     team = Team('49ers', 28, [1]) # 49ers
     teams.append(team)
     team = Team('Oilers', 10, [1]) # oilers
     teams.append(team)
-
-    team = Team('Giants', 13, [2]) # giants
+    team = Team('Giants', 13, [1]) # giants
     teams.append(team)
+    team = Team('Bills', 25, [1]) # bills
+    teams.append(team)
+
     team = Team('Raiders', 7, [2]) # raiders
     teams.append(team)
     team = Team('Dolphins', 16, [2]) # dolphins
@@ -135,35 +135,35 @@ def _setup_teams_rook():
     teams.append(team)
     team = Team('Bears', 27, [2]) # bears
     teams.append(team)
+    team = Team('Vikings', 1, [2]) # vikings
+    teams.append(team)
 
-    team = Team('Vikings', 1, [3]) # vikings
+    team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
     team = Team('Rams', 6, [3]) # rams
     teams.append(team)
-    team = Team('Redskins', 5, [3]) # redskins
+    team = Team('Bengals', 26, [3]) # bengals
+    teams.append(team)
+    team = Team('Broncos', 24, [3]) # broncos
+    teams.append(team)
+    team = Team('Chargers', 20, [3]) # chargers
     teams.append(team)
     team = Team('Falcons', 14, [3]) # falcons
     teams.append(team)
-    team = Team('Lions', 11, [3]) # lions
-    teams.append(team)
-    team = Team('Buccaneers', 22, [3]) # buccaneers
-    teams.append(team)
 
-    team = Team('Cowboys', 17, [4]) # cowboys
+    team = Team('Lions', 11, [4]) # lions
     teams.append(team)
-    team = Team('Bengals', 26, [4]) # bengals
+    team = Team('Buccaneers', 22, [4]) # buccaneers
     teams.append(team)
     team = Team('Saints', 4, [4]) # saints
     teams.append(team)
-    team = Team('Broncos', 24, [4]) # broncos
-    teams.append(team)
-    team = Team('Chargers', 20, [4]) # chargers
+    team = Team('Cowboys', 17, [4]) # cowboys
     teams.append(team)
     team = Team('Cardinals', 21, [4]) # cardinals
     teams.append(team)
-
-    team = Team('Jets', 12, [5]) # jets
+    team = Team('Jets', 12, [4]) # jets
     teams.append(team)
+
     team = Team('Steelers', 2, [5]) # steelers
     teams.append(team)
     team = Team('Browns', 23, [5]) # browns
