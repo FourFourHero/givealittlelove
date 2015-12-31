@@ -19,6 +19,11 @@ def vs_rook(request):
     teams = _setup_teams_rook()
     return _vs(request, teams, 'Rook', '/tecmo/vs/rook')
 
+def vs_random(request):
+    logging.warn('vs_rook')
+    teams = _setup_teams_rook()
+    return _vs_random(request, teams)
+
 def home(request):
     logging.warn('home')
     response_dict = success_dict()
@@ -186,7 +191,7 @@ def _roll_tier():
     logging.info('tier roll: ' + str(roll))
     return roll
 
-def _roll_team(teams, tier, not_team=-1):
+def _roll_team(teams, tier=-1, not_team=-1):
     logging.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
     roll = random.randint(1,28)
     logging.info('team roll: ' + str(roll))
@@ -195,7 +200,7 @@ def _roll_team(teams, tier, not_team=-1):
     logging.info('team: ' + team.name)
 
     # if the team is not in the same tier, or is the same team already picked, find another
-    while tier not in team.tiers or team.img_id == not_team:
+    while (tier != -1 and tier not in team.tiers) or team.img_id == not_team:
         roll = random.randint(1,28)
         logging.info('backup team roll: ' + str(roll))
         team = teams[roll-1]
@@ -206,8 +211,8 @@ def _roll_team(teams, tier, not_team=-1):
 def _vs(request, teams, tier_ranking, form_action):
     logging.warn('_vs')
     tier = _roll_tier()
-    team1 = _roll_team(teams, tier)
-    team2 = _roll_team(teams, tier, not_team=team1.img_id)
+    team1 = _roll_team(teams, tier=tier)
+    team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['tier_ranking'] = tier_ranking
@@ -215,3 +220,12 @@ def _vs(request, teams, tier_ranking, form_action):
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
+
+def _vs_random(request, teams):
+    logging.warn('_vs_random')
+    team1 = _roll_team(teams)
+    team2 = _roll_team(teams, not_team=team1.img_id)
+    response_dict = success_dict()
+    response_dict['team1'] = team1
+    response_dict['team2'] = team2
+    return render_template(request, response_dict, 'gall/site/tecmo_vs_random.html')

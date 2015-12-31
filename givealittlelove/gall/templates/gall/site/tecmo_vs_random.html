@@ -1,0 +1,34 @@
+<body bgcolor=black>
+    <font color="white">
+<center>
+    <h1>Random Matchup!</h1>
+<table>
+    <tr>
+        <td align=center>
+            <img src='/static/images/helmets/team{{team1.img_id}}.png' width='60' height='60'>
+            <br/>
+            <font color="white">{{team1.name}}</font>
+            <br/>
+            <font color="white" size=-2>(High Seed)</font>
+        </td>
+        <td width=80 align=center><font color="white">VS</font></td>
+        <td align=center>
+            <img src='/static/images/helmets/team{{team2.img_id}}.png' width='60' height='60'>
+            <br/>
+            <font color="white">{{team2.name}}</font>
+            <br/>
+            <font color="white" size=-2>(Low Seed)</font>
+        </td>
+    </tr>
+</table>
+<br/><font color="white" size=-1>(Random Ranking Method)</font>
+<br/>
+<br/>
+<form action='/tecmo/vs/random' method='get'>
+<input type='submit' text='Create New Matchup!' value='Create New Matchup!'>
+</form>
+<br/>
+<font size=-1><a href='https://github.com/FourFourHero/givealittlelove/blob/master/givealittlelove/gall/views/tecmo.py'>Team matchup code can be found here on GitHub</a></font>
+</center>
+</font>
+</body>

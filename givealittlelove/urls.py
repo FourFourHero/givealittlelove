@@ -45,6 +45,7 @@ urlpatterns = patterns('',
     url(r'^tecmo/$', 'givealittlelove.gall.views.tecmo.home'),
     url(r'^tecmo/vs/tomczak', 'givealittlelove.gall.views.tecmo.vs_tomczak'),
     url(r'^tecmo/vs/rook', 'givealittlelove.gall.views.tecmo.vs_rook'),
+    url(r'^tecmo/vs/random', 'givealittlelove.gall.views.tecmo.vs_random'),
 
 )
 
