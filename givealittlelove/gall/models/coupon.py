@@ -11,7 +11,7 @@ class Coupon(BaseModel):
     sent = models.BooleanField(default=False)
     activation_id = models.IntegerField(default=-1)
     created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True, auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True)
     objects = CouponManager()
 
     class Meta:

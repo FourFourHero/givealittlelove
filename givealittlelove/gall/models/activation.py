@@ -12,7 +12,7 @@ class Activation(BaseModel):
     code = models.CharField(max_length=6)
     coupon_id = models.IntegerField(default=-1)
     created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True, auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True)
     objects = ActivationManager()
 
     class Meta:

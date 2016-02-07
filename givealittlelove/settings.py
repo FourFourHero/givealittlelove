@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_gravatar',
+    'push_notifications',
     'givealittlelove.gall',
 )
 
@@ -145,6 +146,15 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 MAILGUN_ACCESS_KEY = 'key-6891425a68a0983ebdb0578003a05f74'
 MAILGUN_SERVER_NAME = 'app19686c2dc77649e48e3a1181ad726870.mailgun.org'
+
+#
+# PUSH
+#
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "GCM_API_KEY": "[your api key]",
+        "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
+}
 
 ###
 ### Local Settings

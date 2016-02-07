@@ -11,7 +11,7 @@ class Ambassador(BaseModel):
     email = models.EmailField(max_length=254)
     code = models.CharField(unique=True, max_length=6)
     created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True, auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True)
     objects = AmbassadorManager()
 
     class Meta:
