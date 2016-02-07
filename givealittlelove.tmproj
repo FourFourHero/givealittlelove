@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>givealittlelove/gall/templates/gall/site/tecmo_vs.html</string>
+	<string>givealittlelove/gall/views/tecmo.py</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -616,39 +616,37 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>15</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
 		</dict>
 		<key>givealittlelove/gall/templates/gall/site/tecmo_vs.html</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>51</integer>
+				<integer>48</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>givealittlelove/gall/templates/gall/site/tecmo_vs_random.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>40</integer>
+				<key>line</key>
+				<integer>23</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -804,14 +802,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>32</integer>
+				<integer>24</integer>
 				<key>line</key>
-				<integer>120</integer>
+				<integer>198</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>78</integer>
+			<integer>0</integer>
 		</dict>
 		<key>givealittlelove/settings.py</key>
 		<dict>
@@ -892,9 +890,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>17</integer>
+				<integer>26</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>47</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -993,6 +991,7 @@
 		<string>givealittlelove/gall/templates/gall/apisandbox/ambassador_create.html</string>
 		<string>givealittlelove/gall/views/apisandbox.py</string>
 		<string>givealittlelove/gall/views/tecmo.py</string>
+		<string>givealittlelove/gall/templates/gall/site/tecmo_vs_random.html</string>
 		<string>givealittlelove/gall/models/basemodel.py</string>
 		<string>givealittlelove/gall/models/coupon.py</string>
 		<string>givealittlelove/gall/api/mail.py</string>

@@ -47,6 +47,10 @@ urlpatterns = patterns('',
     url(r'^tecmo/vs/rook', 'givealittlelove.gall.views.tecmo.vs_rook'),
     url(r'^tecmo/vs/random', 'givealittlelove.gall.views.tecmo.vs_random'),
 
+    # CCA
+    url(r'^cca/bootstrap', 'givealittlelove.gall.views.cca.bootstrap'),
+    url(r'^cca/message', 'givealittlelove.gall.views.cca.message'),
+
 )
 
 
