@@ -12,15 +12,15 @@ logger = logging.getLogger(__name__)
 def vs_tomczak(request):
     logging.warn('vs_tomczak')
     teams = _setup_teams_tomczak()
-    return _vs(request, teams, 'Tomczak', '/tecmo/vs/tomczak')
+    return _vs(request, teams, 'Tomczak', '/vs/tomczak')
 
-def vs_rook(request):
-    logging.warn('vs_rook')
-    teams = _setup_teams_rook()
-    return _vs(request, teams, 'Rook', '/tecmo/vs/rook')
+def vs_agi(request):
+    logging.warn('vs_agi')
+    teams = _setup_teams_agi()
+    return _vs(request, teams, 'AGI', '/vs/agi')
 
 def vs_random(request):
-    logging.warn('vs_rook')
+    logging.warn('vs_random')
     teams = _setup_teams_rook()
     return _vs_random(request, teams)
 
@@ -116,21 +116,23 @@ def _setup_teams_tomczak():
     logging.info('teams size: ' + str(len(teams)))
     return teams
 
-# experimental Rook rankings
-def _setup_teams_rook():
+# experimental AGI rankings
+def _setup_teams_agi():
     logging.info('setup_teams_rook')
     teams = []
 
+    # tier 1
     team = Team('49ers', 28, [1]) # 49ers
     teams.append(team)
     team = Team('Oilers', 10, [1]) # oilers
     teams.append(team)
-    team = Team('Giants', 13, [1]) # giants
-    teams.append(team)
     team = Team('Bills', 25, [1]) # bills
     teams.append(team)
+    team = Team('Raiders', 7, [1]) # raiders
+    teams.append(team)
 
-    team = Team('Raiders', 7, [2]) # raiders
+    # tier 2
+    team = Team('Giants', 13, [2]) # giants
     teams.append(team)
     team = Team('Dolphins', 16, [2]) # dolphins
     teams.append(team)
@@ -140,35 +142,38 @@ def _setup_teams_rook():
     teams.append(team)
     team = Team('Bears', 27, [2]) # bears
     teams.append(team)
-    team = Team('Vikings', 1, [2]) # vikings
-    teams.append(team)
 
-    team = Team('Redskins', 5, [3]) # redskins
+    # tier 3
+    team = Team('Vikings', 1, [3]) # vikings
     teams.append(team)
     team = Team('Rams', 6, [3]) # rams
     teams.append(team)
-    team = Team('Bengals', 26, [3]) # bengals
-    teams.append(team)
-    team = Team('Broncos', 24, [3]) # broncos
-    teams.append(team)
-    team = Team('Chargers', 20, [3]) # chargers
+    team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
     team = Team('Falcons', 14, [3]) # falcons
     teams.append(team)
-
-    team = Team('Lions', 11, [4]) # lions
+    team = Team('Lions', 11, [3]) # lions
     teams.append(team)
-    team = Team('Buccaneers', 22, [4]) # buccaneers
+    team = Team('Buccaneers', 22, [3]) # buccaneers
+    teams.append(team)
+
+    # tier 4
+    team = Team('Cowboys', 17, [4]) # cowboys
     teams.append(team)
     team = Team('Saints', 4, [4]) # saints
     teams.append(team)
-    team = Team('Cowboys', 17, [4]) # cowboys
+    team = Team('Broncos', 24, [4]) # broncos
+    teams.append(team)
+    team = Team('Bengals', 26, [4]) # bengals
+    teams.append(team)
+    team = Team('Chargers', 20, [4]) # chargers
     teams.append(team)
     team = Team('Cardinals', 21, [4]) # cardinals
     teams.append(team)
-    team = Team('Jets', 12, [4]) # jets
-    teams.append(team)
 
+    # tier 5
+    team = Team('Jets', 12, [5]) # jets
+    teams.append(team)
     team = Team('Steelers', 2, [5]) # steelers
     teams.append(team)
     team = Team('Browns', 23, [5]) # browns
