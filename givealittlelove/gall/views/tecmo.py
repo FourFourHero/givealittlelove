@@ -21,7 +21,7 @@ def vs_agi(request):
 
 def vs_random(request):
     logging.warn('vs_random')
-    teams = _setup_teams_rook()
+    teams = _setup_teams_agi()
     return _vs_random(request, teams)
 
 def home(request):
@@ -118,7 +118,7 @@ def _setup_teams_tomczak():
 
 # experimental AGI rankings
 def _setup_teams_agi():
-    logging.info('setup_teams_rook')
+    logging.info('setup_teams_agi')
     teams = []
 
     # tier 1
