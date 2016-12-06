@@ -42,10 +42,10 @@ urlpatterns = patterns('',
 
     # TECMO
     url(r'^$', 'givealittlelove.gall.views.tecmo.home'),
-    url(r'^vs/tomczak', 'givealittlelove.gall.views.tecmo.vs_tomczak'),
-    url(r'^vs/agi', 'givealittlelove.gall.views.tecmo.vs_agi'),
-    url(r'^vs/agi-json', 'givealittlelove.gall.views.tecmo.vs_agi_json'),    
-    url(r'^vs/random', 'givealittlelove.gall.views.tecmo.vs_random'),
+    url(r'^vs/tomczak$', 'givealittlelove.gall.views.tecmo.vs_tomczak'),
+    url(r'^vs/agi$', 'givealittlelove.gall.views.tecmo.vs_agi'),
+    url(r'^vs/agi-json$', 'givealittlelove.gall.views.tecmo.vs_agi_json'),    
+    url(r'^vs/random$', 'givealittlelove.gall.views.tecmo.vs_random'),
 
     # CCA
     #url(r'^cca/bootstrap', 'givealittlelove.gall.views.cca.bootstrap'),
