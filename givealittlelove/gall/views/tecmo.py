@@ -33,8 +33,8 @@ def vs_agi_json(request):
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['tier'] = tier
-    response_dict['team1'] = team1
-    response_dict['team2'] = team2
+    response_dict['team1'] = team1.name
+    response_dict['team2'] = team2.name
     return JsonResponse(response_dict)
 
 def home(request):
