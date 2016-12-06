@@ -1,6 +1,7 @@
 import logging
 import random
 
+from django.http import JsonResponse
 from givealittlelove.gall.views.response import *
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,18 @@ def vs_random(request):
     logging.warn('vs_random')
     teams = _setup_teams_agi()
     return _vs_random(request, teams)
+
+def vs_agi_json(request):
+    logging.warn('vs_agi_json')
+    teams = _setup_teams_agi()
+    tier = _roll_tier()
+    team1 = _roll_team(teams, tier=tier)
+    team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
+    response_dict = success_dict()
+    response_dict['tier'] = tier
+    response_dict['team1'] = team1
+    response_dict['team2'] = team2
+    return JsonResponse(response_dict)
 
 def home(request):
     logging.warn('home')
@@ -213,7 +226,7 @@ def _roll_team(teams, tier=-1, not_team=-1):
 
     return team
 
-def _vs(request, teams, tier_ranking, form_action):
+def _vs(request, teams, tier_ranking, form_action, format=None):
     logging.warn('_vs')
     tier = _roll_tier()
     team1 = _roll_team(teams, tier=tier)
