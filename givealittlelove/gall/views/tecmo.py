@@ -28,7 +28,7 @@ def vs_random(request):
 def vs_agi_json(request):
     logging.warn('vs_agi_json')
     teams, tiers = _setup_teams_agi()
-    tier = _roll_tier(max_tiers=tiers)
+    tier = _roll_tier(max_tier=tiers)
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
@@ -240,7 +240,7 @@ def _roll_team(teams, tier=-1, not_team=-1):
 
 def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     logging.warn('_vs')
-    tier = _roll_tier(max_tiers=tiers)
+    tier = _roll_tier(max_tier=tiers)
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
