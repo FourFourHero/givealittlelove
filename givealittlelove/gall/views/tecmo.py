@@ -12,23 +12,23 @@ logger = logging.getLogger(__name__)
 
 def vs_tomczak(request):
     logging.warn('vs_tomczak')
-    teams = _setup_teams_tomczak()
-    return _vs(request, teams, 'Tomczak', '/vs/tomczak')
+    teams, tiers = _setup_teams_tomczak()
+    return _vs(request, teams, tiers, 'Tomczak', '/vs/tomczak')
 
 def vs_agi(request):
     logging.warn('vs_agi')
-    teams = _setup_teams_agi()
-    return _vs(request, teams, 'AGI', '/vs/agi')
+    teams, tiers = _setup_teams_agi()
+    return _vs(request, teams, tiers, 'AGI', '/vs/agi')
 
 def vs_random(request):
     logging.warn('vs_random')
-    teams = _setup_teams_agi()
+    teams, tiers = _setup_teams_agi()
     return _vs_random(request, teams)
 
 def vs_agi_json(request):
     logging.warn('vs_agi_json')
-    teams = _setup_teams_agi()
-    tier = _roll_tier()
+    teams, tiers = _setup_teams_agi()
+    tier = _roll_tier(max_tier=tiers)
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
@@ -127,7 +127,7 @@ def _setup_teams_tomczak():
     teams.append(team)
 
     logging.info('teams size: ' + str(len(teams)))
-    return teams
+    return teams, 5
 
 # experimental AGI rankings
 def _setup_teams_agi():
@@ -141,12 +141,14 @@ def _setup_teams_agi():
     teams.append(team)
     team = Team('Bills', 25, [1]) # bills
     teams.append(team)
-    team = Team('Raiders', 7, [1]) # raiders
+    team = Team('Giants', 13, [1]) # giants
+    teams.append(team)
+
+    # tiers 1 & 2
+    team = Team('Raiders', 7, [1, 2]) # raiders
     teams.append(team)
 
     # tier 2
-    team = Team('Giants', 13, [2]) # giants
-    teams.append(team)
     team = Team('Dolphins', 16, [2]) # dolphins
     teams.append(team)
     team = Team('Eagles', 15, [2]) # eagles
@@ -156,6 +158,10 @@ def _setup_teams_agi():
     team = Team('Bears', 27, [2]) # bears
     teams.append(team)
 
+    # tiers 2 & 3
+    team = Team('Lions', 11, [2, 3]) # lions
+    teams.append(team)
+
     # tier 3
     team = Team('Vikings', 1, [3]) # vikings
     teams.append(team)
@@ -163,49 +169,55 @@ def _setup_teams_agi():
     teams.append(team)
     team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
-    team = Team('Falcons', 14, [3]) # falcons
+
+    # tiers 3 & 4
+    team = Team('Falcons', 14, [3, 4]) # falcons
     teams.append(team)
-    team = Team('Lions', 11, [3]) # lions
-    teams.append(team)
-    team = Team('Buccaneers', 22, [3]) # buccaneers
+    team = Team('Cowboys', 17, [3, 4]) # cowboys
     teams.append(team)
 
     # tier 4
-    team = Team('Cowboys', 17, [4]) # cowboys
-    teams.append(team)
-    team = Team('Saints', 4, [4]) # saints
-    teams.append(team)
     team = Team('Broncos', 24, [4]) # broncos
     teams.append(team)
     team = Team('Bengals', 26, [4]) # bengals
     teams.append(team)
     team = Team('Chargers', 20, [4]) # chargers
     teams.append(team)
-    team = Team('Cardinals', 21, [4]) # cardinals
+
+    # tiers 4 & 5
+    team = Team('Buccaneers', 22, [4, 5]) # buccaneers
     teams.append(team)
 
     # tier 5
+    team = Team('Saints', 4, [5]) # saints
+    teams.append(team)
+    team = Team('Cardinals', 21, [5]) # cardinals
+    teams.append(team)
     team = Team('Jets', 12, [5]) # jets
     teams.append(team)
     team = Team('Steelers', 2, [5]) # steelers
     teams.append(team)
-    team = Team('Browns', 23, [5]) # browns
+
+    # tiers 5 & 6
+    team = Team('Browns', 23, [5, 6]) # browns
     teams.append(team)
-    team = Team('Packers', 9, [5]) # packers
+
+    # tier 6
+    team = Team('Packers', 9, [6]) # packers
     teams.append(team)
-    team = Team('Seahawks', 3, [5]) # seahawks
+    team = Team('Seahawks', 3, [6]) # seahawks
     teams.append(team)
-    team = Team('Colts', 18, [5]) # colts
+    team = Team('Colts', 18, [6]) # colts
     teams.append(team)
-    team = Team('Patriots', 8, [5]) # patriots
+    team = Team('Patriots', 8, [6]) # patriots
     teams.append(team)
 
     logging.info('teams size: ' + str(len(teams)))
-    return teams
+    return teams, 6
 
-def _roll_tier():
+def _roll_tier(max_tier=5):
     logging.info('roll_tier')
-    roll = random.randint(1,5)
+    roll = random.randint(1,max_tier)
     logging.info('tier roll: ' + str(roll))
     return roll
 
@@ -226,9 +238,9 @@ def _roll_team(teams, tier=-1, not_team=-1):
 
     return team
 
-def _vs(request, teams, tier_ranking, form_action, format=None):
+def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     logging.warn('_vs')
-    tier = _roll_tier()
+    tier = _roll_tier(max_tiers=tiers)
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
