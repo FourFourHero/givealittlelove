@@ -28,7 +28,7 @@ def vs_random(request):
 def vs_agi_json(request):
     logging.warn('vs_agi_json')
 
-    min_tier = get_request_var('min_tier')
+    min_tier = get_request_var(request, 'min_tier')
     logging.warn('min_tier: ' + str(min_tier))
 
     teams, tiers = _setup_teams_agi()
