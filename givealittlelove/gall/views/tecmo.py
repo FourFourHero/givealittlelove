@@ -11,30 +11,31 @@ logger = logging.getLogger(__name__)
 ###
 
 def vs_tomczak(request):
-    logging.warn('vs_tomczak')
+    logger.warn('vs_tomczak')
     teams, tiers = _setup_teams_tomczak()
     return _vs(request, teams, tiers, 'Tomczak', '/vs/tomczak')
 
 def vs_agi(request):
-    logging.warn('vs_agi')
+    logger.warn('vs_agi')
     teams, tiers = _setup_teams_agi()
     return _vs(request, teams, tiers, 'AGI', '/vs/agi')
 
 def vs_random(request):
-    logging.warn('vs_random')
+    logger.warn('vs_random')
     teams, tiers = _setup_teams_agi()
     return _vs_random(request, teams)
 
 def vs_agi_json(request):
-    logging.warn('vs_agi_json')
+    logger.warn('vs_agi_json')
 
     min_tier = get_request_var(request, 'min_tier')
-    logging.warn('min_tier: ' + str(min_tier))
+    logger.warn('min_tier: ' + str(min_tier))
 
     teams, tiers = _setup_teams_agi()
 
     tier = None
     if min_tier:
+        min_tier = int(min_tier)
         tier = _roll_tier_new(min_tier=min_tier, num_tiers=tiers)
     else:
         tier = _roll_tier(max_tier=tiers)
@@ -48,7 +49,7 @@ def vs_agi_json(request):
     return JsonResponse(response_dict)
 
 def home(request):
-    logging.warn('home')
+    logger.warn('home')
     response_dict = success_dict()
     return render_template(request, response_dict, 'gall/site/tecmo.html')
 
@@ -68,7 +69,7 @@ class Team(object):
 
 # http://tecmotourney.blogspot.com/p/team-tiers.html
 def _setup_teams_tomczak():
-    logging.info('setup_teams_tomczak')
+    logger.info('setup_teams_tomczak')
     teams = []
 
     team = Team('Oilers', 10, [1]) # oilers
@@ -136,12 +137,12 @@ def _setup_teams_tomczak():
     team = Team('Browns', 23, [5]) # browns
     teams.append(team)
 
-    logging.info('teams size: ' + str(len(teams)))
+    logger.info('teams size: ' + str(len(teams)))
     return teams, 5
 
 # experimental AGI rankings
 def _setup_teams_agi():
-    logging.info('setup_teams_agi')
+    logger.info('setup_teams_agi')
     teams = []
 
     # tier 1
@@ -222,49 +223,51 @@ def _setup_teams_agi():
     team = Team('Patriots', 8, [6]) # patriots
     teams.append(team)
 
-    logging.info('teams size: ' + str(len(teams)))
+    logger.info('teams size: ' + str(len(teams)))
     return teams, 6
 
 def _roll_tier(max_tier=5):
-    logging.info('roll_tier')
+    logger.info('roll_tier')
     roll = random.randint(1,max_tier)
-    logging.info('tier roll: ' + str(roll))
+    logger.info('tier roll: ' + str(roll))
     return roll
 
 def _roll_tier_new(min_tier=None, num_tiers=5):
-    logging.info('roll_tier')
+    logger.info('roll_tier')
 
     tier = None
     while not tier:
         roll = random.randint(1, num_tiers)
-        logging.info('tier roll: ' + str(roll))
+        logger.info('tier roll: ' + str(roll))
         if min_tier:
+            logger.info('there is a min_tier')
             if roll <= min_tier:
+                logger.info('roll is less than min_tier')
                 tier = roll
                 break
 
-    logging.info('got tier: ' + str(tier))
+    logger.info('got tier: ' + str(tier))
     return tier
 
 def _roll_team(teams, tier=-1, not_team=-1):
-    logging.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
+    logger.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
     roll = random.randint(1,28)
-    logging.info('team roll: ' + str(roll))
+    logger.info('team roll: ' + str(roll))
 
     team = teams[roll-1]
-    logging.info('team: ' + team.name)
+    logger.info('team: ' + team.name)
 
     # if the team is not in the same tier, or is the same team already picked, find another
     while (tier != -1 and tier not in team.tiers) or team.img_id == not_team:
         roll = random.randint(1,28)
-        logging.info('backup team roll: ' + str(roll))
+        logger.info('backup team roll: ' + str(roll))
         team = teams[roll-1]
-        logging.info('backup team: ' + team.name)
+        logger.info('backup team: ' + team.name)
 
     return team
 
 def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
-    logging.warn('_vs')
+    logger.warn('_vs')
     tier = _roll_tier(max_tier=tiers)
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
@@ -277,7 +280,7 @@ def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     return render_template(request, response_dict, 'gall/site/tecmo_vs.html')
 
 def _vs_random(request, teams):
-    logging.warn('_vs_random')
+    logger.warn('_vs_random')
     team1 = _roll_team(teams)
     team2 = _roll_team(teams, not_team=team1.img_id)
     response_dict = success_dict()
