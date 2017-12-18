@@ -27,8 +27,18 @@ def vs_random(request):
 
 def vs_agi_json(request):
     logging.warn('vs_agi_json')
+
+    min_tier = get_request_var('min_tier')
+    logging.warn('min_tier: ' + str(min_tier))
+
     teams, tiers = _setup_teams_agi()
-    tier = _roll_tier(max_tier=tiers)
+
+    tier = None
+    if min_tier:
+        tier = _roll_tier_new(min_tier=min_tier, num_tiers=tiers)
+    else:
+        tier = _roll_tier(max_tier=tiers)
+
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
@@ -220,6 +230,21 @@ def _roll_tier(max_tier=5):
     roll = random.randint(1,max_tier)
     logging.info('tier roll: ' + str(roll))
     return roll
+
+def _roll_tier_new(min_tier=None, num_tiers=5):
+    logging.info('roll_tier')
+
+    tier = None
+    while not tier:
+        roll = random.randint(1, num_tiers)
+        logging.info('tier roll: ' + str(roll))
+        if min_tier:
+            if roll <= min_tier:
+                tier = roll
+                break
+
+    logging.info('got tier: ' + str(tier))
+    return tier
 
 def _roll_team(teams, tier=-1, not_team=-1):
     logging.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
