@@ -12,9 +12,12 @@ from givealittlelove.gall.models import model_encode_verbose
 def get_request_var(request, name):
     var = None
     try:
-        var = request.REQUEST[name]
+        var = request.POST[name]
     except:
-        pass
+        try:
+            var = request.GET[name]
+        except:
+            pass
 
     if var == '':
         var = None
