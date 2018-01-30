@@ -273,7 +273,7 @@ def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     tier = -1
     tiers = team1.tiers
     idx = random.randint(0,len(tiers))
-    tier = team.tiers(idx)
+    tier = team1.tiers(idx)
     logger.info('NEW tier: ' + str(tier))
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
