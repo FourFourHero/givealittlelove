@@ -264,12 +264,17 @@ def _roll_team(teams, tier=-1, not_team=-1):
         team = teams[roll-1]
         logger.info('backup team: ' + team.name)
 
-    return team
+    return team 
 
 def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     logger.warn('_vs')
-    tier = _roll_tier(max_tier=tiers)
-    team1 = _roll_team(teams, tier=tier)
+    #tier = _roll_tier(max_tier=tiers)
+    team1 = _roll_team(teams)
+    tier = -1
+    tiers = team1.tiers
+    idx = random.randint(0,len(tiers))
+    tier = team.tiers(idx)
+    logger.info('NEW tier: ' + str(tier))
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     response_dict = success_dict()
     response_dict['tier'] = tier
