@@ -50,9 +50,12 @@ def vs_agi_json(request):
     return JsonResponse(response_dict)
 
 def _get_alexa_teams(request, teams):
+    logger.info('_get_alexa_teams')
     team1 = _roll_team(teams)
+    logger.info('t1 ' + str(team1))
     tiers = team1.tiers
     idx = random.randint(0,len(tiers))
+    logger.info('idx ' + str(idx))
     tier = team1.tiers[idx]
     logger.info('NEW tier: ' + str(tier))
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
