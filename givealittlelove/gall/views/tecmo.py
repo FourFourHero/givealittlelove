@@ -25,30 +25,6 @@ def vs_random(request):
     teams, tiers = _setup_teams_agi()
     return _vs_random(request, teams)
 
-# called via Alexa skill
-def vs_agi_json_old(request):
-    logger.warn('vs_agi_json')
-
-    min_tier = get_request_var(request, 'min_tier')
-    logger.warn('min_tier: ' + str(min_tier))
-
-    teams, tiers = _setup_teams_agi()
-
-    tier = None
-    if min_tier:
-        min_tier = int(min_tier)
-        tier = _roll_tier_new(min_tier=min_tier, num_tiers=tiers)
-    else:
-        tier = _roll_tier(max_tier=tiers)
-
-    team1 = _roll_team(teams, tier=tier)
-    team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
-    response_dict = success_dict()
-    response_dict['tier'] = tier
-    response_dict['team1'] = team1.name
-    response_dict['team2'] = team2.name
-    return JsonResponse(response_dict)
-
 def _get_alexa_teams(request, teams):
     logger.info('_get_alexa_teams')
     team1 = _roll_team(teams)
@@ -62,6 +38,7 @@ def _get_alexa_teams(request, teams):
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
     return tier, team1, team2
 
+# called via Alexa skill
 def vs_agi_json(request):
     logger.warn('vs_agi_json')
 
@@ -261,29 +238,6 @@ def _setup_teams_agi():
     logger.info('teams size: ' + str(len(teams)))
     return teams, 6
 
-def _roll_tier(max_tier=5):
-    logger.info('roll_tier')
-    roll = random.randint(1,max_tier)
-    logger.info('tier roll: ' + str(roll))
-    return roll
-
-def _roll_tier_new(min_tier=None, num_tiers=5):
-    logger.info('roll_tier')
-
-    tier = None
-    while not tier:
-        roll = random.randint(1, num_tiers)
-        logger.info('tier roll: ' + str(roll))
-        if min_tier:
-            logger.info('there is a min_tier')
-            if roll <= min_tier:
-                logger.info('roll is less than min_tier')
-                tier = roll
-                break
-
-    logger.info('got tier: ' + str(tier))
-    return tier
-
 def _roll_team(teams, tier=-1, not_team=-1):
     logger.info('roll_team tier: ' + str(tier) + ' not_team: ' + str(not_team))
     roll = random.randint(1,28)
@@ -325,3 +279,30 @@ def _vs_random(request, teams):
     response_dict['team1'] = team1
     response_dict['team2'] = team2
     return render_template(request, response_dict, 'gall/site/tecmo_vs_random.html')
+
+###
+### GRAVEYARD
+###
+
+def _roll_tier(max_tier=5):
+    logger.info('roll_tier')
+    roll = random.randint(1,max_tier)
+    logger.info('tier roll: ' + str(roll))
+    return roll
+
+def _roll_tier_new(min_tier=None, num_tiers=5):
+    logger.info('roll_tier')
+
+    tier = None
+    while not tier:
+        roll = random.randint(1, num_tiers)
+        logger.info('tier roll: ' + str(roll))
+        if min_tier:
+            logger.info('there is a min_tier')
+            if roll <= min_tier:
+                logger.info('roll is less than min_tier')
+                tier = roll
+                break
+
+    logger.info('got tier: ' + str(tier))
+    return tier
