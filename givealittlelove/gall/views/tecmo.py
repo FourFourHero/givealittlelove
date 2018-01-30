@@ -25,6 +25,7 @@ def vs_random(request):
     teams, tiers = _setup_teams_agi()
     return _vs_random(request, teams)
 
+# called via Alexa skill
 def vs_agi_json(request):
     logger.warn('vs_agi_json')
 
@@ -42,6 +43,36 @@ def vs_agi_json(request):
 
     team1 = _roll_team(teams, tier=tier)
     team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
+    response_dict = success_dict()
+    response_dict['tier'] = tier
+    response_dict['team1'] = team1.name
+    response_dict['team2'] = team2.name
+    return JsonResponse(response_dict)
+
+def _get_alexa_teams(request, teams):
+    team1 = _roll_team(teams)
+    tiers = team1.tiers
+    idx = random.randint(0,len(tiers))
+    tier = team1.tiers[idx]
+    logger.info('NEW tier: ' + str(tier))
+    team2 = _roll_team(teams, tier=tier, not_team=team1.img_id)
+    return tier, team1, team2
+
+def vs_agi_json(request):
+    logger.warn('vs_agi_json')
+
+    min_tier = get_request_var(request, 'min_tier')
+    logger.warn('min_tier: ' + str(min_tier))
+
+    teams, tiers = _setup_teams_agi()
+
+    tier, team1, team2 = _get_alexa_teams(request, teams)
+    
+    if min_tier:
+        min_tier = int(min_tier)
+        while tier > min_tier:
+            tier, team1, team2 = _get_alexa_teams(request, teams)
+            
     response_dict = success_dict()
     response_dict['tier'] = tier
     response_dict['team1'] = team1.name
@@ -268,7 +299,6 @@ def _roll_team(teams, tier=-1, not_team=-1):
 
 def _vs(request, teams, tiers, tier_ranking, form_action, format=None):
     logger.warn('_vs')
-    #tier = _roll_tier(max_tier=tiers)
     team1 = _roll_team(teams)
     tiers = team1.tiers
     idx = random.randint(0,len(tiers))
