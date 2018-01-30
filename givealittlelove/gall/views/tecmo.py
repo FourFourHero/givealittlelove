@@ -55,7 +55,7 @@ def _get_alexa_teams(request, teams):
     logger.info('t1 ' + str(team1.name))
     tiers = team1.tiers
     logger.info('team tiers ' + str(tiers))
-    idx = random.randint(0,len(tiers))
+    idx = random.randint(0,len(tiers)-1)
     logger.info('idx ' + str(idx))
     tier = team1.tiers[idx]
     logger.info('NEW tier: ' + str(tier))
