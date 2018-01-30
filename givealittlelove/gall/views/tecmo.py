@@ -26,7 +26,7 @@ def vs_random(request):
     return _vs_random(request, teams)
 
 # called via Alexa skill
-def vs_agi_json(request):
+def vs_agi_json_old(request):
     logger.warn('vs_agi_json')
 
     min_tier = get_request_var(request, 'min_tier')
