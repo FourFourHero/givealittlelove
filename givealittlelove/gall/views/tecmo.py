@@ -160,25 +160,25 @@ def _setup_teams_agi():
     # tier 1
     team = Team('49ers', 28, [1]) # 49ers
     teams.append(team)
+    team = Team('Giants', 13, [1]) # giants
+    teams.append(team)
     team = Team('Oilers', 10, [1]) # oilers
     teams.append(team)
     team = Team('Bills', 25, [1]) # bills
     teams.append(team)
-    team = Team('Giants', 13, [1]) # giants
-    teams.append(team)
 
     # tiers 1 & 2
-    team = Team('Raiders', 7, [1, 2]) # raiders
+    team = Team('Eagles', 15, [1, 2]) # eagles
     teams.append(team)
 
     # tier 2
+    team = Team('Raiders', 7, [2]) # raiders
+    teams.append(team)
     team = Team('Dolphins', 16, [2]) # dolphins
     teams.append(team)
-    team = Team('Eagles', 15, [2]) # eagles
+    team = Team('Bears', 27, [2]) # bears
     teams.append(team)
     team = Team('Chiefs', 19, [2]) # chiefs
-    teams.append(team)
-    team = Team('Bears', 27, [2]) # bears
     teams.append(team)
 
     # tiers 2 & 3
@@ -186,51 +186,51 @@ def _setup_teams_agi():
     teams.append(team)
 
     # tier 3
-    team = Team('Vikings', 1, [3]) # vikings
-    teams.append(team)
     team = Team('Rams', 6, [3]) # rams
     teams.append(team)
     team = Team('Redskins', 5, [3]) # redskins
     teams.append(team)
+    team = Team('Bengals', 26, [3]) # bengals
+    teams.append(team)
 
     # tiers 3 & 4
-    team = Team('Falcons', 14, [3, 4]) # falcons
+    team = Team('Buccaneers', 22, [3, 4]) # buccaneers
     teams.append(team)
-    team = Team('Cowboys', 17, [3, 4]) # cowboys
+    team = Team('Falcons', 14, [3, 4]) # falcons
     teams.append(team)
 
     # tier 4
-    team = Team('Broncos', 24, [4]) # broncos
+    team = Team('Cowboys', 17, [4]) # cowboys
     teams.append(team)
-    team = Team('Bengals', 26, [4]) # bengals
+    team = Team('Vikings', 1, [4]) # vikings
     teams.append(team)
     team = Team('Chargers', 20, [4]) # chargers
     teams.append(team)
 
     # tiers 4 & 5
-    team = Team('Buccaneers', 22, [4, 5]) # buccaneers
+    team = Team('Broncos', 24, [4, 5]) # broncos
     teams.append(team)
 
     # tier 5
     team = Team('Saints', 4, [5]) # saints
     teams.append(team)
-    team = Team('Cardinals', 21, [5]) # cardinals
+    team = Team('Steelers', 2, [5]) # steelers
     teams.append(team)
     team = Team('Jets', 12, [5]) # jets
     teams.append(team)
-    team = Team('Steelers', 2, [5]) # steelers
+    team = Team('Browns', 23, [5]) # browns
     teams.append(team)
 
     # tiers 5 & 6
-    team = Team('Browns', 23, [5, 6]) # browns
+    team = Team('Seahawks', 3, [5, 6]) # seahawks
     teams.append(team)
-
+    
     # tier 6
-    team = Team('Packers', 9, [6]) # packers
-    teams.append(team)
-    team = Team('Seahawks', 3, [6]) # seahawks
+    team = Team('Cardinals', 21, [6]) # cardinals
     teams.append(team)
     team = Team('Colts', 18, [6]) # colts
+    teams.append(team)
+    team = Team('Packers', 9, [6]) # packers
     teams.append(team)
     team = Team('Patriots', 8, [6]) # patriots
     teams.append(team)
